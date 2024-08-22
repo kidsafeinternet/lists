@@ -21,6 +21,9 @@ def sort_files():
                 # Write the sorted contents back to the file, ensuring each line ends with a newline character
                 with open(os.path.join(root, file), 'w') as f:
                     f.writelines(line + '\n' for line in lines)
+                    # Remove empty lines
+                    f.seek(0)
+                    f.write(''.join(filter(lambda x: x.strip(), f.readlines())))
     
     print('Files sorted successfully!')
 
