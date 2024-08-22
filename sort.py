@@ -21,6 +21,8 @@ def sort_files():
                 # Write the sorted contents back to the file
                 with open(os.path.join(root, file), 'w') as f:
                     f.writelines(lines)
+    
+    print('Files sorted successfully!')
 
 if __name__ == '__main__':
     sort_files()
