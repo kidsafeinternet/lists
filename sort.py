@@ -23,7 +23,11 @@ def sort_files():
                     f.writelines(line + '\n' for line in lines)
                     lines = list(set(filter(lambda x: x.strip(), lines)))
                     lines.sort(key=str.lower)
-                    f.write('\n'.join(lines))
+                    # Clear the file contents
+                    f.seek(0)
+                    f.truncate()
+                    # Write the sorted contents back to the file, ensuring each line ends with a newline character
+                    f.writelines(line + '\n' for line in lines)
     
     print('Files sorted successfully!')
 
