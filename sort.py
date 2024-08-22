@@ -23,7 +23,7 @@ def sort_files():
                     f.writelines(line + '\n' for line in lines)
                     lines = list(set(filter(lambda x: x.strip(), lines)))
                     lines.sort(key=str.lower)
-                    f.writelines(line for line in lines)
+                    f.write('\n'.join(lines))
     
     print('Files sorted successfully!')
 
