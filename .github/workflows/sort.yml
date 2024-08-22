@@ -26,16 +26,16 @@ jobs:
 
       - name: Commit
         run: |
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
+          git config --global user.email "zander@zanderlewis.dev"
+          git config --global user.name "zanderlewis"
           git add .
           if git diff-index --quiet HEAD --; then
             echo "No changes to commit"
           else
             git commit -am "Sort files"
+            git pull --rebase origin sort-files
             git push --set-upstream origin sort-files
           fi
-
       - name: Create PR
         uses: peter-evans/create-pull-request@v3
         with:
