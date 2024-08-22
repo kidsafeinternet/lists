@@ -15,12 +15,12 @@ def sort_files():
                 # Remove empty lines and duplicates
                 lines = list(set(filter(lambda x: x.strip(), lines)))
                 
-                # Sort the lines
-                lines.sort()
+                # Sort the lines in a case-insensitive manner
+                lines.sort(key=str.lower)
                 
-                # Write the sorted contents back to the file
+                # Write the sorted contents back to the file, ensuring each line ends with a newline character
                 with open(os.path.join(root, file), 'w') as f:
-                    f.writelines(lines)
+                    f.writelines(line + '\n' for line in lines)
     
     print('Files sorted successfully!')
 
