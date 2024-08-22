@@ -27,7 +27,7 @@ def sort_files():
                     f.seek(0)
                     f.truncate()
                     # Write the sorted contents back to the file, ensuring each line ends with a newline character
-                    f.writelines(line + '\n' for line in lines)
+                    f.writelines(line for line in lines)
     
     print('Files sorted successfully!')
 
