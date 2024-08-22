@@ -31,6 +31,7 @@ jobs:
           else
             git commit -am "Sort files"
             git push --set-upstream origin sort-files
+          fi
 
       - name: Create PR
         uses: peter-evans/create-pull-request@v3
