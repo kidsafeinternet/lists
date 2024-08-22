@@ -4,33 +4,38 @@ on:
     branches:
       - main
 jobs:
-    sort:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v2
-            - name: Sort
-              run: |
-                for file in $(find . -name '*.txt'); do
-                  sort -o $file $file
-                done
-            - name: Change branch
-              run: |
-                git checkout -b sort-files
-                git add .
-            - name: Commit
-              run: |
-                git config --global user.email "actions@github.com"
-                git config --global user.name "GitHub Actions"
-                git commit -am "Sort files"
-                git push
-            - name: Create PR
-              uses: peter-evans/create-pull-request@v3
-              with:
-                token: ${{ secrets.GITHUB_TOKEN }}
-                commit-message: Sort files
-                title: Sort files
-                body: |
-                  This PR sorts all the files in the repository.
-                branch: sort-files
-                base: main
+  sort:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Change branch
+        run: git checkout -b sort-files
+
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Run sort.py
+        run: python3 sort.py
+
+      - name: Commit
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add .
+          git commit -am "Sort files"
+          git push --set-upstream origin sort-files
+
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Sort files
+          title: Sort files
+          body: |
+            This PR sorts all the files in the repository.
+          branch: sort-files
+          base: main
