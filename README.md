@@ -1,5 +1,5 @@
-# Extension
-List of unsafe/safe sites for ai/ml/dl research and development along with an extension to block them.
+# Lists
+List of unsafe sites for ai/ml/dl research and development.
 
 ## Where's the Data?
 - [NSFW](data/nsfw/nsfw_sites.txt)
