@@ -44,9 +44,9 @@ def update_readme(nsfw_count, malware_count):
     with open(readme_path, 'w') as f:
         for line in lines:
             if line.startswith('- [NSFW]'):
-                f.write(f'- [NSFW](data/nsfw/nsfw_sites.txt) - {nsfw_count} links\n')
+                f.write(f'- [NSFW](data/nsfw/nsfw_sites.txt) - {nsfw_count:,} links\n')
             elif line.startswith('- [VIRUS]'):
-                f.write(f'- [VIRUS](data/malware/malware_sites.txt) - {malware_count} links\n')
+                f.write(f'- [VIRUS](data/malware/malware_sites.txt) - {malware_count:,} links\n')
             else:
                 f.write(line)
 
