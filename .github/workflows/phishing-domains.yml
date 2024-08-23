@@ -1,4 +1,4 @@
-name: Phishing Domain Retrieval
+name: Phishing Domain Retrieval and Sort
 on:
   schedule:
     - cron: '0 0 * * *' # Run every day at midnight
@@ -38,5 +38,33 @@ jobs:
             git pull --rebase
             git stash pop
             git commit -m "Retrieve Phishing Domains" -a
+            git push
+          fi
+  sort:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Run sort.py
+        run: python3 sort.py
+
+      - name: List files after sort
+        run: git status
+
+      - name: Commit
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add .
+          if git diff-index --quiet HEAD --; then
+            echo "No changes to commit"
+          else
+            git commit -m "Sort Links"
             git push
           fi
