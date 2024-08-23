@@ -19,7 +19,9 @@ jobs:
           python-version: '3.x'
     
       - name: Run phishing.py
-        run: python3 phishing.py
+        run: |
+          pip3 install -r requirements.txt
+          python3 phishing.py
     
       - name: List files after phishing
         run: git status
