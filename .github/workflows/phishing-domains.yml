@@ -1,0 +1,30 @@
+name: Phishing Domain Retrieval
+on:
+  schedule:
+    - cron: '0 0 * * *' # Run every day at midnight
+
+jobs:
+  retrieve-phishing-domains:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+    
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+    
+      - name: Run phishing.py
+        run: python3 phishing.py
+    
+      - name: List files after phishing
+        run: git status
+    
+      - name: Commit and Push
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add .
+          git commit -m "Retrieve Phishing Domains"
+          git push

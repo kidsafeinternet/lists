@@ -3,6 +3,7 @@ import os
 def sort_files():
     nsfw_count = 0
     malware_count = 0
+    phishing_count = 0
 
     # Walk through data/ directory and all its subdirectories
     for root, dirs, files in os.walk('data/'):
@@ -23,20 +24,23 @@ def sort_files():
                 
                 # Write the sorted contents back to the file
                 with open(os.path.join(root, file), 'w') as f:
-                    f.writelines(lines)
+                    f.writelines(line + '\n' for line in lines)
                 
                 # Count the number of lines
                 if 'nsfw' in root:
                     nsfw_count += len(lines)
-                elif 'malware' in root:
-                    malware_count += len(lines)
+                elif 'malicious' in root:
+                    if 'phishing' in file.lower():
+                        phishing_count += len(lines)
+                    else:
+                        malware_count += len(lines)
                 
                 print(f'Sorted {file}')
     
     print('Files sorted successfully!')
-    return nsfw_count, malware_count
+    return nsfw_count, malware_count, phishing_count
 
-def update_readme(nsfw_count, malware_count):
+def update_readme(nsfw_count, malware_count, phishing_count):
     readme_path = 'README.md'
     with open(readme_path, 'r') as f:
         lines = f.readlines()
@@ -45,11 +49,13 @@ def update_readme(nsfw_count, malware_count):
         for line in lines:
             if line.startswith('- [NSFW]'):
                 f.write(f'- [NSFW](data/nsfw/nsfw_sites.txt) - {nsfw_count:,} links\n')
-            elif line.startswith('- [VIRUS]'):
-                f.write(f'- [VIRUS](data/malware/malware_sites.txt) - {malware_count:,} links\n')
+            elif line.startswith('- [MALWARE]'):
+                f.write(f'- [MALWARE](data/malicious/malware_sites.txt) - {malware_count:,} links\n')
+            elif line.startswith('- [PHISHING]'):
+                f.write(f'- [PHISHING](data/malicious/phishing_sites.txt) - {phishing_count:,} links\n')
             else:
                 f.write(line)
 
 if __name__ == '__main__':
-    nsfw_count, malware_count = sort_files()
-    update_readme(nsfw_count, malware_count)
+    nsfw_count, malware_count, phishing_count = sort_files()
+    update_readme(nsfw_count, malware_count, phishing_count)
