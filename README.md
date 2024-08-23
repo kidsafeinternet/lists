@@ -1,6 +1,9 @@
 # Lists
 List of unsafe sites for ai/ml/dl research and development.
 
+Special thanks to [mitchellkrogza/Phishing.Database](https://github.com/mitchellkrogza/Phishing.Database)
+and
+
 ## Where's the Data?
 - [NSFW](data/nsfw/nsfw_sites.txt) - 28,596 links
 - [MALWARE](data/malicious/malware_sites.txt) - 19,795 links
