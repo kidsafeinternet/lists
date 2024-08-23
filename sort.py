@@ -24,7 +24,7 @@ def sort_files():
                 
                 # Write the sorted contents back to the file
                 with open(os.path.join(root, file), 'w') as f:
-                    f.writelines(line + '\n' for line in lines)
+                    f.writelines(lines)
                 
                 # Count the number of lines
                 if 'nsfw' in root:
