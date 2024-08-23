@@ -37,6 +37,6 @@ jobs:
             git stash
             git pull --rebase
             git stash pop
-            git commit -m "Retrieve Phishing Domains"
+            git commit -m "Retrieve Phishing Domains" -a
             git push
           fi
