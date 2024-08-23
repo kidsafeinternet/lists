@@ -4,7 +4,7 @@ List of unsafe sites for ai/ml/dl research and development.
 ## Where's the Data?
 - [NSFW](data/nsfw/nsfw_sites.txt) - 28,596 links
 - [MALWARE](data/malicious/malware_sites.txt) - 19,795 links
-- [PHISHING](data/phishing/phishing_sites.txt)
+- [PHISHING](data/malicious/phishing_sites.txt) - 0 links
 
 ## How to Contribute?
 1. Fork this repository.
