@@ -34,7 +34,9 @@ jobs:
           if git diff-index --quiet HEAD --; then
             echo "No changes to commit"
           else
+            git stash
             git pull --rebase
+            git stash pop
             git commit -m "Retrieve Phishing Domains"
             git push
           fi
