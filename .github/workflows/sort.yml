@@ -37,5 +37,7 @@ jobs:
             git stash pop
             git add .
             git commit -m "Sort and update links"
-            git push
+            for i in {1..5}; do
+              git push && break || (echo "Retrying push... ($i)" && sleep 5)
+            done
           fi
