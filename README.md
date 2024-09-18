@@ -1,5 +1,5 @@
 # Lists
-Lists of unsafe sites for ai/ml/dl research and development along with other dangerous sites.
+Lists of unsafe sites for ai/ml/dl research/development and site blockers along with other dangerous sites.
 
 Special thanks to [mitchellkrogza](https://github.com/mitchellkrogza) for [mitchellkrogza/Phishing.Database](https://github.com/mitchellkrogza/Phishing.Database)
 and [mitchellkrogza/The-Big-List-of-Hacked-Malware-Web-Sites](https://github.com/mitchellkrogza/The-Big-List-of-Hacked-Malware-Web-Sites)
