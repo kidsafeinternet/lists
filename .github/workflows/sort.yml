@@ -35,6 +35,6 @@ jobs:
             git stash
             git pull --rebase
             git stash pop
-            git commit -m "Sort and update links"
+            git commit -m "Sort and update links" -a
             git push
           fi
