@@ -24,12 +24,25 @@ jobs:
           toolchain: stable
           override: true
       
+      - name: Cache rsfunceble installation
+        uses: actions/cache@v3
+        with:
+          path: ~/.cargo/bin/rsfunceble
+          key: ${{ runner.os }}-cargo-rsfunceble-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-rsfunceble-
+
+      - name: Install rsfunceble
+        run: |
+          if [ ! -f ~/.cargo/bin/rsfunceble ]; then
+            cargo install rsfunceble
+          fi
+      
       - name: Run rsfunceble
         run: |
-          cargo install rsfunceble
-          rsfunceble -i data/nsfw/nsfw_sites.txt -o data/nsfw/nsfw_sites -c 1000 -v
-          rsfunceble -i data/phishing/phishing_sites.txt -o data/phishing/phishing_sites -c 1000 -v
-          rsfunceble -i data/suspicious/malware_sites.txt -o data/suspicious/malware_sites -c 1000 -v
+          rsfunceble -i data/nsfw/nsfw_sites.txt -o data/nsfw/nsfw_sites -c 1000000 -v
+          rsfunceble -i data/phishing/phishing_sites.txt -o data/phishing/phishing_sites -c 1000000 -v
+          rsfunceble -i data/suspicious/malware_sites.txt -o data/suspicious/malware_sites -c 1000000 -v
         
       - name: Run sort.py
         run: python3 sort.py
