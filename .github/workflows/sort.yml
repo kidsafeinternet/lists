@@ -27,9 +27,9 @@ jobs:
       - name: Run rsfunceble
         run: |
           cargo install rsfunceble
-          rsfunceble -i data/nsfw/nsfw_sites.txt -o data/nsfw/nsfw_sites
-          rsfunceble -i data/phishing/phishing_sites.txt -o data/phishing/phishing_sites
-          rsfunceble -i data/suspicious/malware_sites.txt -o data/suspicious/malware_sites
+          rsfunceble -i data/nsfw/nsfw_sites.txt -o data/nsfw/nsfw_sites -c 1000 -v
+          rsfunceble -i data/phishing/phishing_sites.txt -o data/phishing/phishing_sites -c 1000 -v
+          rsfunceble -i data/suspicious/malware_sites.txt -o data/suspicious/malware_sites -c 1000 -v
         
       - name: Run sort.py
         run: python3 sort.py
