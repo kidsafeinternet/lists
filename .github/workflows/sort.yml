@@ -2,8 +2,8 @@ name: Sort and Commit
 on:
   workflow_run:
     workflows: 
-      - NSFW Subreddits Retrieval and Sort
-      - Phishing Domain Retrieval and Sort
+      - NSFW Subreddits Retrieval
+      - Phishing Domain Retrieval
     types:
       - completed
 
@@ -24,6 +24,11 @@ jobs:
     
       - name: List files after sort
         run: git status
+      
+      - name: Run PyFunceble
+        run: |
+          pip3 install -r requirements.txt
+          find ./data -type d -exec pyfunceble --directory {} --plain --dns 8.8.8.8 --commit-autosave \;
     
       - name: Commit and Push
         run: |

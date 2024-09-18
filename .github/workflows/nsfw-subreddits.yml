@@ -1,4 +1,4 @@
-name: NSFW Subreddits Retrieval and Sort
+name: NSFW Subreddits Retrieval
 on:
   schedule:
     - cron: '0 0 * * *' # Run every day at midnight

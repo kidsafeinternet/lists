@@ -1,4 +1,4 @@
-name: Phishing Domain Retrieval and Sort
+name: Phishing Domain Retrieval
 on:
   schedule:
     - cron: '0 0 * * *' # Run every day at midnight
