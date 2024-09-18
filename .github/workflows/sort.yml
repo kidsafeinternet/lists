@@ -34,3 +34,4 @@ jobs:
           else
             git commit -m "Sort and update links"
             git push
+          fi
