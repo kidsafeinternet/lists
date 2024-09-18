@@ -1,8 +1,7 @@
 name: Sort and Filter
 on:
   workflow_run:
-    workflows: 
-      - NSFW Subreddits Retrieval
+    workflows:
       - Phishing Domain Retrieval
     types:
       - completed
