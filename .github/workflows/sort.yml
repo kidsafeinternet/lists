@@ -31,8 +31,8 @@ jobs:
       - name: Run rsfunceble
         run: |
           rsfunceble -i data/nsfw/nsfw_sites.txt -o data/nsfw/nsfw_sites -c 1000000 -v
-          rsfunceble -i data/phishing/phishing_sites.txt -o data/phishing/phishing_sites -c 1000000 -v
-          rsfunceble -i data/suspicious/malware_sites.txt -o data/suspicious/malware_sites -c 1000000 -v
+          rsfunceble -i data/malicious/phishing_sites.txt -o data/malicious/phishing_sites -c 1000000 -v
+          rsfunceble -i data/malicious/malware_sites.txt -o data/malicious/malware_sites -c 1000000 -v
         
       - name: Run sort.py
         run: python3 sort.py
