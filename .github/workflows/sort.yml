@@ -37,9 +37,6 @@ jobs:
           if git diff-index --quiet HEAD --; then
             echo "No changes to commit"
           else
-            git stash
-            git pull --rebase
-            git stash pop
             git add .
             git commit -m "Sort and update links"
             for i in {1..5}; do
