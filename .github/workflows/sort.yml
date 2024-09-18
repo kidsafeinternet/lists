@@ -23,20 +23,9 @@ jobs:
         with:
           toolchain: stable
           override: true
-      
-      - name: Cache rsfunceble installation
-        uses: actions/cache@v3
-        with:
-          path: ~/.cargo/bin/rsfunceble
-          key: ${{ runner.os }}-cargo-rsfunceble-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-cargo-rsfunceble-
 
       - name: Install rsfunceble
-        run: |
-          if [ ! -f ~/.cargo/bin/rsfunceble ]; then
-            cargo install rsfunceble
-          fi
+        run: cargo install rsfunceble
       
       - name: Run rsfunceble
         run: |
