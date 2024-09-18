@@ -1,4 +1,4 @@
-name: Sort and Commit
+name: Sort and Filter
 on:
   workflow_run:
     workflows: 
@@ -8,7 +8,7 @@ on:
       - completed
 
 jobs:
-  sort-and-commit:
+  sort-and-filter:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -27,8 +27,8 @@ jobs:
       
       - name: Run PyFunceble
         run: |
-          pip3 install -r requirements.txt
-          find ./data -type d -exec pyfunceble --directory {} --plain --dns 8.8.8.8 --commit-autosave \;
+          pip3 install pyfunceble
+          find ./data -type f -name "*.txt" -exec pyfunceble -f {} --plain --dns 8.8.8.8 --commit-autosave \;
     
       - name: Commit and Push
         run: |
