@@ -5,6 +5,7 @@ on:
       - Phishing Domain Retrieval
     types:
       - completed
+  workflow_dispatch:
 
 jobs:
   sort-and-filter:
