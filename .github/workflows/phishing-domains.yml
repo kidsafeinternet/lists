@@ -1,10 +1,8 @@
 name: Phishing Domain Retrieval
 on:
   schedule:
-    - cron: '0 0 * * *' # Run every day at midnight
-  push:
-    branches:
-      - main
+    # Run monthly on the first day of the month at 00:00 UTC
+    - cron: '0 0 1 * *'
 
 jobs:
   retrieve-phishing-domains:
