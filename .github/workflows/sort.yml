@@ -28,7 +28,7 @@ jobs:
       - name: Run PyFunceble
         run: |
           pip3 install pyfunceble
-          find ./data -type f -name "*.txt" -exec pyfunceble -f {} --plain --dns 8.8.8.8 --commit-autosave \;
+          find ./data -type f -name "*.txt" -exec pyfunceble -f {} --plain --dns 8.8.8.8 \;
     
       - name: Commit and Push
         run: |
