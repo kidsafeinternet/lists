@@ -17,17 +17,25 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
-    
+      
+      - name: Install Rust and Cargo
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+      
+      - name: Run rsfunceble
+        run: |
+          cargo install rsfunceble
+          rsfunceble -i data/nsfw/nsfw_sites.txt -o data/nsfw/nsfw_sites
+          rsfunceble -i data/phishing/phishing_sites.txt -o data/phishing/phishing_sites
+          rsfunceble -i data/suspicious/malware_sites.txt -o data/suspicious/malware_sites
+        
       - name: Run sort.py
         run: python3 sort.py
     
       - name: List files after sort
         run: git status
-      
-      - name: Run PyFunceble
-        run: |
-          pip3 install pyfunceble
-          find ./data -type f -name "*.txt" -exec pyfunceble -f {} --plain --dns 8.8.8.8 \;
     
       - name: Commit and Push
         run: |
