@@ -1,5 +1,4 @@
 name: Sort and Filter
-
 on:
   workflow_run:
     workflows:
@@ -10,64 +9,48 @@ on:
 
 jobs:
   sort-and-filter:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
+    
       - name: Install Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
-
-      # Install Rust and Cargo on Windows (64-bit)
+      
       - name: Install Rust and Cargo
-        run: |
-          curl https://win.rustup.rs/x86_64 -o rustup-init.exe
-          .\rustup-init.exe -y
-        shell: cmd
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
 
-      # Add Cargo to PATH
-      - name: Add Cargo to PATH
-        run: |
-          echo C:\Users\zapalew\.cargo\bin >> $env:GITHUB_PATH
-          echo $env:GITHUB_PATH
-        shell: powershell
-
-      # Verify Rust and Cargo installation
-      - name: Verify Rust and Cargo
-        run: |
-          rustup --version
-          cargo --version
-        shell: cmd
-
-      # Install rsfunceble via Cargo
       - name: Install rsfunceble
         run: cargo install rsfunceble
-        shell: cmd
-
-      # Run rsfunceble commands for filtering domains
+      
       - name: Run rsfunceble
         run: |
-          rsfunceble -i data\nsfw\nsfw_sites.txt -o data\nsfw\nsfw_sites -c 10000 -v
-          rsfunceble -i data\malicious\phishing_sites.txt -o data\malicious\phishing_sites -c 10000 -v
-          rsfunceble -i data\malicious\malware_sites.txt -o data\malicious\malware_sites -c 10000 -v
-        shell: cmd
-
+          rsfunceble -i data/nsfw/nsfw_sites.txt -o data/nsfw/nsfw_sites -c 10000 -v
+          rsfunceble -i data/malicious/phishing_sites.txt -o data/malicious/phishing_sites -c 10000 -v
+          rsfunceble -i data/malicious/malware_sites.txt -o data/malicious/malware_sites -c 10000 -v
+        
       - name: Run sort.py
-        run: python sort.py
-        shell: cmd
-
+        run: python3 sort.py
+    
       - name: List files after sort
         run: git status
-        shell: cmd
-
+    
       - name: Commit and Push
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add .
-          git commit -m "Sort and update links"
-          git push
-        shell: cmd
-
+          if git diff-index --quiet HEAD --; then
+            echo "No changes to commit"
+          else
+            git add .
+            git commit -m "Sort and update links"
+            for i in {1..5}; do
+              git push && break || (echo "Retrying push... ($i)" && sleep 5)
+            done
+          fi
