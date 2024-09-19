@@ -5,9 +5,9 @@ Special thanks to [mitchellkrogza](https://github.com/mitchellkrogza) for [mitch
 and [mitchellkrogza/The-Big-List-of-Hacked-Malware-Web-Sites](https://github.com/mitchellkrogza/The-Big-List-of-Hacked-Malware-Web-Sites)
 
 ## Where's the Data?
-- [NSFW](data/nsfw/nsfw_sites.txt) - 29,804 links
-- [MALWARE](data/malicious/malware_sites.txt) - 19,795 links
-- [PHISHING](data/malicious/phishing_sites.txt) - 657,138 links
+- [NSFW](data/nsfw/nsfw_sites.txt) - 59,806 links
+- [MALWARE](data/malicious/malware_sites.txt) - 39,563 links
+- [PHISHING](data/malicious/phishing_sites.txt) - 1,312,859 links
 
 ## How to Contribute?
 1. Fork this repository.
