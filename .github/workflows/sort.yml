@@ -20,22 +20,14 @@ jobs:
         with:
           python-version: '3.x'
 
-      # Detect system architecture and download the correct Rust installer
+      # Download and install Rust for 64-bit Windows
       - name: Install Rust and Cargo for 64-bit Windows
-        if: runner.os == 'Windows' && runner.arch == 'X64'
         run: |
-          curl https://win.rustup.rs/x86_64 -o rustup-init.exe
+          curl https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe -o rustup-init.exe
           .\rustup-init.exe -y
         shell: cmd
 
-      - name: Install Rust and Cargo for 32-bit Windows
-        if: runner.os == 'Windows' && runner.arch == 'X86'
-        run: |
-          curl https://win.rustup.rs/i686 -o rustup-init.exe
-          .\rustup-init.exe -y
-        shell: cmd
-
-      # Add Cargo to PATH on Windows
+      # Add Cargo to PATH on Windows (64-bit)
       - name: Add Cargo to PATH
         run: |
           echo C:\Users\runneradmin\.cargo\bin >> $env:GITHUB_PATH
