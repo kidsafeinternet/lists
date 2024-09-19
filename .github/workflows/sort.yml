@@ -20,10 +20,18 @@ jobs:
         with:
           python-version: '3.x'
 
-      # Ensure Rust is installed on Windows using rustup-init.exe
-      - name: Install Rust and Cargo
+      # Detect system architecture and download the correct Rust installer
+      - name: Install Rust and Cargo for 64-bit Windows
+        if: runner.os == 'Windows' && runner.arch == 'X64'
         run: |
-          curl https://sh.rustup.rs -o rustup-init.exe
+          curl https://win.rustup.rs/x86_64 -o rustup-init.exe
+          .\rustup-init.exe -y
+        shell: cmd
+
+      - name: Install Rust and Cargo for 32-bit Windows
+        if: runner.os == 'Windows' && runner.arch == 'X86'
+        run: |
+          curl https://win.rustup.rs/i686 -o rustup-init.exe
           .\rustup-init.exe -y
         shell: cmd
 
