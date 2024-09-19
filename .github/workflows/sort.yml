@@ -14,33 +14,36 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-    
+
       - name: Install Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      # Download and install Rust for 64-bit Windows
-      - name: Install Rust and Cargo for 64-bit Windows
+      # Install Rust and Cargo on Windows (64-bit)
+      - name: Install Rust and Cargo
         run: |
-          curl https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe -o rustup-init.exe
+          curl https://win.rustup.rs/x86_64 -o rustup-init.exe
           .\rustup-init.exe -y
         shell: cmd
 
-      # Add Cargo to PATH on Windows (64-bit)
+      # Add Cargo to the PATH
       - name: Add Cargo to PATH
-        run: |
-          echo C:\Users\runneradmin\.cargo\bin >> $env:GITHUB_PATH
+        run: echo C:\Users\runneradmin\.cargo\bin >> $env:GITHUB_PATH
         shell: powershell
 
-      # Verify Rust and Cargo installation on Windows
-      - name: Check Rust and Cargo installation
+      # Restart shell to recognize new PATH
+      - name: Restart shell
+        run: powershell -command "Restart-Computer -Force"
+
+      # Verify Rust and Cargo installation
+      - name: Verify Rust and Cargo
         run: |
           rustup --version
           cargo --version
         shell: cmd
 
-      # Install rsfunceble via Cargo on Windows
+      # Install rsfunceble via Cargo
       - name: Install rsfunceble
         run: cargo install rsfunceble
         shell: cmd
@@ -52,15 +55,15 @@ jobs:
           rsfunceble -i data\malicious\phishing_sites.txt -o data\malicious\phishing_sites -c 1000000 -v
           rsfunceble -i data\malicious\malware_sites.txt -o data\malicious\malware_sites -c 1000000 -v
         shell: cmd
-      
+
       - name: Run sort.py
         run: python sort.py
         shell: cmd
-    
+
       - name: List files after sort
         run: git status
         shell: cmd
-    
+
       - name: Commit and Push
         run: |
           git config user.name github-actions[bot]
