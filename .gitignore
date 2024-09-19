@@ -1,6 +1,9 @@
-node_modules
+# [ General ] #
+.DS_Store
+
 # [ Github Actions ] #
 # For some reason, the Actions runner is committing itself to the repo
 # and the `ALL-phishing-domains.tar.gz` file is being created in the root
 home/
 ALL-phishing-domains.tar.gz
+*.exe
