@@ -27,14 +27,12 @@ jobs:
           .\rustup-init.exe -y
         shell: cmd
 
-      # Add Cargo to the PATH
+      # Add Cargo to PATH
       - name: Add Cargo to PATH
-        run: echo C:\Users\zapalew\.cargo\bin >> $env:GITHUB_PATH
+        run: |
+          echo C:\Users\zapalew\.cargo\bin >> $env:GITHUB_PATH
+          echo $env:GITHUB_PATH
         shell: powershell
-
-      # Restart shell to recognize new PATH
-      - name: Restart shell
-        run: powershell -command "Restart-Computer -Force"
 
       # Verify Rust and Cargo installation
       - name: Verify Rust and Cargo
