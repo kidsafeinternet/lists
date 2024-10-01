@@ -11,8 +11,8 @@ and [mitchellkrogza/The-Big-List-of-Hacked-Malware-Web-Sites](https://github.com
 - [NSFW LINKS](data/nsfw/nsfw_links.txt) - 1,466 links
   - [ACTIVE](data/nsfw/nsfw_links_ACTIVE.txt) - 0 links
   - [INACTIVE](data/nsfw/nsfw_links_INACTIVE.txt) - 0 links
-- [MALWARE](data/malicious/malware_sites.txt) - 39,503 links
-  - [ACTIVE](data/malicious/malware_sites_ACTIVE.txt) - 19,708 links
+- [MALWARE](data/malicious/malware_sites.txt) - 39,501 links
+  - [ACTIVE](data/malicious/malware_sites_ACTIVE.txt) - 19,706 links
   - [INACTIVE](data/malicious/malware_sites_INACTIVE.txt) - 0 links
 - [PHISHING](data/malicious/phishing_sites.txt) - 1,312,859 links
   - [ACTIVE](data/malicious/phishing_sites_ACTIVE.txt) - 655,721 links
