@@ -33,7 +33,7 @@ def read_txt_from_tar_gz(tar_gz_path, txt_filename):
     return None
 
 if __name__ == '__main__':
-    url = 'https://github.com/mitchellkrogza/Phishing.Database/raw/master/ALL-phishing-domains.tar.gz'
+    url = 'https://phish.co.za/latest/ALL-phishing-domains.tar.gz'
     local_tar_gz = 'ALL-phishing-domains.tar.gz'
     txt_filename = 'ALL-phishing-domains.txt'  # Adjust this if the text file name is different
 
